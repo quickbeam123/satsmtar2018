@@ -1,0 +1,36 @@
+Exercise 0 - obtaining Vampire:
+-------------------------------
+
+The source code of Vampire is available at 
+
+https://github.com/vprover/vampire
+
+for evaluation and research purposes (see LICENCE there for more details).
+
+Full official vampire, that we will be using, requires the SMT solver Z3 as a library.
+
+Z3 has been pre-installed on the provided VM. 
+
+(In general, make sure there is sub-directory "include" of your "vampire" directory
+and that it contains (a link to) the z3 library file "libz3.so" (unix) / "libz3.dylib" (mac).
+In might be necessary to also make LD_LIBRARY_PATH (unix) / DYLD_LIBRARY_PATH (mac) contain the path
+the this vampire's "include" dir.)
+
+--- on the provided VM ---
+
+- start the Terminal
+- cd vampire
+- git pull
+- make vampire_z3_rel -j 3
+
+should give us (as of 5 July 2018) vampire_z3_rel_master_3993
+
+
+Exercise 1 - Limited Resource Strategy (LRS) and the time limit
+---------------------------------------------------------------
+
+Under certain conditions, LRS may behave in surprising ways. Because it actively discards
+clauses which are estimated not to be useful before the allotted time is over, it may
+prove things faster when given less time. Try playing with
+
+./vampire_z3_rel_master_3993 
