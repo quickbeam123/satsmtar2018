@@ -75,7 +75,11 @@ ANSWER: Finite model builder constructed a THE one element group (which is of or
 
 4) Can add an axiom to make Vampire looking for larger models?
 
-ANSWER: For instance, add fof(a,axiom,a!=e).
+ANSWER: For instance, add 
+
+fof(a,axiom,a!=e).
+
+adding an extra constant "a" to the problem and stating it's not equal to the unit element "e".
 
 5) Can you add axioms to force Vampire look for a group (of order two) of size exactly three?
 
@@ -102,7 +106,7 @@ The default strategy as in
 
 will have a hard time.
 
-Adding "--mode casc" (instead of "-sa fmb") will employs Vampire's powerful strategy schedule and maybe find a suitable strategy for this hard(ish) problem. 
+Adding "--mode casc" (instead of "-sa fmb") will employs Vampire's powerful strategy schedule and maybe find a suitable strategy to solve this hard(ish) problem. 
 
 An extra challenge: try understanding the proof!
 
@@ -111,14 +115,117 @@ Exercise 3 - Challenge: Can you find the right strategy?
 --------------------------------------------------------
 
 
+Exercise 4 - Theories in Vampire, theory axioms, SMTLIB input
+-------------------------------------------------------------
 
-Exercise 4 - Question answering mode
+
+Exercise 5 - Question answering mode
 ------------------------------------
 
 
 
-Exercise 5 - Interpolation in Vampire
+
+
+
+Exercise 6 - Interpolation in Vampire
 -------------------------------------
 
+Interpolation is an advanced topic that will only be covered after this practical session. 
 
+Here we provide a set of problems (see ./interpolation/*.p) that demonstrate the use of interpolation in Vampire.
+The examples are written in a vampire-specific extension of TPTP that allows encoding interpolation-related information.
+
+Let's have a look at Ex0_BasicConflict.p 
+
+The construct
+
+vampire(option,<option_name>,<value>).
+
+is a way of setting Vampire options from an input file rather than, as usual, from the command line.
+Here we use it to:
+
+vampire(option,avatar,off).
+
+turn off the avatar architecture, which is not yet fully compatible with interpolation,
+
+vampire(option,show_interpolant,new_heur).
+
+tell Vampire to generate and show interpolants when it proves the formula.
+
+Interpolation in our settings is the following task. Given a `left' formula L, a `right' formula R, and possibly a set of background axioms A,
+provided "L /\ R /\ A" is unsatisfiable, come up with an interpolant I, a formula satisfying
+1) A /\ L => I,
+2) A /\ I /\ R is unsatisfiable,
+3) I does not contain symbols specific to L or R.
+
+We need to tell Vampire which symbols are specific to L and R as in:
+
+vampire(symbol,function,z,0,left).
+
+which declares a new function "z" of arity 0, i.e. a constant, and marks it as belonging to the left formula.
+
+Finally, 
+
+vampire(left_formula).
+  fof(fA,hypothesis,p(z)).
+vampire(end_formula).
+
+declares left formula itself and similarly
+
+vampire(right_formula).
+  fof(fB, hypothesis,![X]:~p(X)).
+vampire(end_formula).
+
+the right one. Note that there can be more than one fof(...) construct between the respective 
+
+vampire(left_formula/right_fomrula). / vampire(end_formula).
+
+"brackets".
+
+In this example, Vampire finds the obvious trivial refutation and comes up with the interpolant
+
+! [X0] : ~p(X0) => $false
+
+which is minimised and simplified to
+
+?[X0] : (p(X0))
+
+Intuitively this existential formula summarises the left formula "p(z)" without mentioning the forbidden constant z.
+
+---
+
+We move our attention to example Ex0_BasicConflict_NoLocalProof.p. 
+
+This is a slightly more complicated version of the previous example which demonstrates the limits of the interpolation method.
+To produce interpolants, Vampire restricts its proof search to so called local proofs 
+(proofs that don't ``mix'' special symbols such as the "z" above). 
+To generate only local proofs certain inferences need to be blocked which leads to the loss of completeness. 
+
+This is actually inherent, as it can be shown that sometimes, as in the case of this example, local proofs simply do not exits.
+
+We see that Vampire terminates with the message:
+
+% Refutation not found, inferences skipped due to colors
+
+If we comment out the declaration:
+
+vampire(symbol,function,c,0,left).
+
+Vampire founds a proof, but the corresponding "interpolant"
+
+(![X0] : (p(c,X0)))
+
+still mentions the forbidden constant "c".
+
+---
+
+For more information on interpolation in Vampire, check out:
+"Interpolation and Symbol Elimination. CADE 2009", 
+"Playing in the grey area of proofs. POPL 2012",
+"Splitting Proofs for Interpolation. CADE 2017", 
+and "First-Order Interpolation and Interpolating Proof Systems. LPAR 2017".
+
+---
+
+Enjoy exploring the other examples in the directory "./interpolation".
 
