@@ -31,6 +31,94 @@ Exercise 1 - Limited Resource Strategy (LRS) and the time limit
 
 Under certain conditions, LRS may behave in surprising ways. Because it actively discards
 clauses which are estimated not to be useful before the allotted time is over, it may
-prove things faster when given less time. Try playing with
+prove things faster when given less time. Try running
 
-./vampire_z3_rel_master_3993 
+./vampire_z3_rel_master_3993 -awr 5:1 -fsr off ../satsmtar2018/GRP140-1.p
+
+Note that:
+- LRS is on by default (otherwise "-sa lrs")
+- "-awr 5:1 -fsr off" (age weight ration and forward subsumption resolution) are set to non-default to enable the desired effect
+
+Now give Vampire less time (than the default 60s) with the option "-t 30", "-t 15", ... "-t 15d" (for 15 deciseconds = 1.5s)
+
+What is the shortest time under which vampire finds a refutation?
+
+
+Exercise 2 - A bit of group theory and finite model finding
+-----------------------------------------------------------
+
+Let's play a bit with the problem "grp_ord2.p" 
+
+1) just let Vampire prove it and try understanding the proof.
+
+./vampire_z3_rel_master_3993 ../satsmtar2018/grp_ord2.p 
+
+2) Comment out the conjecture and run Vampire again as above.
+
+What is it doing? Will it terminate?
+
+Try adding "--show_active on" to see what clause is currently being activated.
+
+Try adding "--show_new on" to see what clauses are getting generated.
+
+ANSWER: It is saturating a satisfiable set of axioms. In theory, it might not terminate at all. 
+Although there are cases of finite saturations. (Complete calculus + finite saturation -> problem shown satisfiable.)
+We cannot be sure after finitely many steps. (By the way, here we are running with the default time limit of 60s.)
+
+3) Without the conjecture, the problem is satisfiable, however saturation-based approaches are not very good at detecting it!
+Let's try finite model building by adding "-sa fmb" 
+(yes, the value "fmb" occurs under "saturation strategy", but as a technology, it has nothing to do with saturation).
+
+What did we get? 
+
+ANSWER: Finite model builder constructed a THE one element group (which is of order 2).
+
+4) Can add an axiom to make Vampire looking for larger models?
+
+ANSWER: For instance, add fof(a,axiom,a!=e).
+
+5) Can you add axioms to force Vampire look for a group (of order two) of size exactly three?
+
+ANSWER:
+
+Add, for instance, 
+
+fof(a,axiom,$distinct(a,b,c)).
+fof(a,axiom,![X]:(X = a | X = b | X = c)).
+
+Note that "$distinct(a,b,c)" is a shorthand for "a!=b & b!=c & a!=c".
+
+Note that Vampire starts checking from size 3 as it noticed that 1 and 2 wouldn't work anyway.
+Then after trying size 4 realises there cannot be any model and concludes "$false [finite model not found]"
+
+The ability to show problems unsatisfiable using finite model building is a bit fancy. See our paper
+"Finding Finite Models in Multi-sorted First-Order Logic. SAT 2016" if interested.
+
+6) Actually, there is no group of order two of size 3. But it's pretty hard to prove by superposition / saturation.
+
+The default strategy as in
+
+"./vampire_z3_rel_master_3993 ../satsmtar2018/grp_ord2.p"
+
+will have a hard time.
+
+Adding "--mode casc" (instead of "-sa fmb") will employs Vampire's powerful strategy schedule and maybe find a suitable strategy for this hard(ish) problem. 
+
+An extra challenge: try understanding the proof!
+
+
+Exercise 3 - Challenge: Can you find the right strategy?
+--------------------------------------------------------
+
+
+
+Exercise 4 - Question answering mode
+------------------------------------
+
+
+
+Exercise 5 - Interpolation in Vampire
+-------------------------------------
+
+
+
