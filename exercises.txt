@@ -71,7 +71,7 @@ Let's try finite model building by adding "-sa fmb"
 
 What did we get? 
 
-ANSWER: Finite model builder constructed a THE one element group (which is of order 2).
+ANSWER: Finite model builder constructed a THE one element group (in which every element is of order 2).
 
 4) Can add an axiom to make Vampire looking for larger models?
 
@@ -81,7 +81,7 @@ fof(a,axiom,a!=e).
 
 adding an extra constant "a" to the problem and stating it's not equal to the unit element "e".
 
-5) Can you add axioms to force Vampire look for a group (of order two) of size exactly three?
+5) Can you add axioms to force Vampire look for a group (in which every element is of order 2) of size exactly three?
 
 ANSWER:
 
@@ -98,7 +98,7 @@ Then after trying size 4 realises there cannot be any model and concludes "$fals
 The ability to show problems unsatisfiable using finite model building is a bit fancy. See our paper
 "Finding Finite Models in Multi-sorted First-Order Logic. SAT 2016" if interested.
 
-6) Actually, there is no group of order two of size 3. But it's pretty hard to prove by superposition / saturation.
+6) Actually, there is no group (in which every element is of order 2) which would have size 3. But it's pretty hard to prove by superposition / saturation.
 
 The default strategy as in
 
@@ -106,7 +106,7 @@ The default strategy as in
 
 will have a hard time.
 
-Adding "--mode casc" (instead of "-sa fmb") will employs Vampire's powerful strategy schedule and maybe find a suitable strategy to solve this hard(ish) problem. 
+Adding "--mode casc" (instead of "-sa fmb") will employ Vampire's powerful strategy schedule and maybe find a suitable strategy to solve this hard(ish) problem. 
 
 An extra challenge: try understanding the proof!
 
@@ -119,10 +119,21 @@ Exercise 4 - Theories in Vampire, theory axioms, SMTLIB input
 -------------------------------------------------------------
 
 
-Exercise 5 - Question answering mode
+
+
+
+- sine ?
+
+- large things?
+
+
+Exercise 5 - Question answering mode 
 ------------------------------------
 
 
+
+Exercise 6 - Clausify / TClausify
+---------------------------------
 
 
 
