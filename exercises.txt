@@ -196,22 +196,6 @@ Now try running Vampire with the option "-sas z3" (which sets z3 as the solver i
 4) The next (optional) exercise is to take one of theory1, theory2, or theory3 and translate it to SMT-LIB. Once you’ve done this you can run Vampire using —input_language smtlib2 and everything else should look the same.
 
 
-Goal Guessing
--------------
-The problem javafe.parser.ParseStmt.002.smt2 comes
-from software verification and is contained in the SMTLib Benchmarks ( http://smtlib.cs.uiowa.edu/benchmarks.shtml ).
-
-Just running
-
-"./vampire_z3_rel_master_3993 --input_syntax smtlib2 javafe.parser.ParseStmt.002.smt2"
-
-does not find a proof in decent time. The reason is that knowing the goal helps Vampire significantly. In case the goal
-is unknown it provides an option to guess what the goal is. Adding the option -gtg all lets us solve this problem.
-
-"./vampire_z3_rel_master_3993 --input_syntax smtlib2 -gtg all javafe.parser.ParseStmt.002.smt2"
-
-
-
 Exercise 5 - Two new options for theory reasoning
 ------------------------------------------------
 
@@ -226,27 +210,32 @@ Now try running with -uwa all. Vampire can now solve it. What have we done?
 theory4
 -thi all
 
+Exercise 6 - Goal Guessing
+--------------------------
+
+The problem javafe.parser.ParseStmt.002.smt2 comes
+from software verification and is contained in the SMTLib Benchmarks ( http://smtlib.cs.uiowa.edu/benchmarks.shtml ).
+
+Just running
+
+"./vampire_z3_rel_master_3995 --input_syntax smtlib2 ../satsmtar2018/javafe.parser.ParseStmt.002.smt2"
+
+does not find a proof in decent time. One of the reasons for it is that vampire uses the information
+about what the conjecture in the problem is for making its search goal directed. However, the smtlib format 
+does not cater for specifying what the conjecture/goal should be.
+
+In case the goal is unknown, Vampire provides an option to guess what the goal could be. 
+Adding the option "-gtg all" or it's long version "--guess_the_goal all" lets us solve this problem.
+
+"./vampire_z3_rel_master_3995 --input_syntax smtlib2 --guess_the_goal all ../satsmtar2018/javafe.parser.ParseStmt.002.smt2"
 
 
 
 
 
-- sine ?
-- large things?
-- cite paper!
 
 
-
-
-
-Modelling - do a Hilbert calculus thing?
-
-
-
-
-
-
-Exercise 5 - Modelling problems in first-order logic and the Question answering mode 
+Exercise 8 - Modelling problems in first-order logic and the Question answering mode 
 ------------------------------------------------------------------------------------
 
 Do you know the puzzle Crossing the River (with a Wolf, a Goat, and a Cabbage)? 
@@ -276,7 +265,7 @@ which encodes the solution.
 For more details, check out Giles' paper: "Revisiting Question Answering in Vampire, VW 2017" (https://easychair.org/publications/open/5L6q).
 
 
-Exercise 6 - Interpolation in Vampire
+Exercise 9 - Interpolation in Vampire
 -------------------------------------
 
 Interpolation is an advanced topic that will only be covered after this practical session. 
