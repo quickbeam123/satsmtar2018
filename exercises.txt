@@ -163,10 +163,27 @@ CASC kills all?
 Exercise 4 - Theories in Vampire, theory axioms, SMTLIB input
 -------------------------------------------------------------
 
-Giles, please?
+Vampire can handle the (quantified) theories of (integer/real linear/non-linear) arithmetic, arrays, and datatypes. We do this in various ways with the main ones being (i) simple rewriting/evaluation, (ii) the addition of theory axioms, and (iii) the use of the z3 SMT solver within AVATAR.
 
---input_syntax smtlib2
+We also support the SMT-LIB input format (but I’m going to stay in TPTP for a bit).
 
+1) To see what can happen with evaluation try running Vampire in default mode on theory1.p which is
+
+tff(f,type,f:$int*$int>$real).
+tff(a,type,a:$real).
+tff(f,axiom, ![X:$int,Y:$int] : f(X,Y) = $divide($to_real($sum(X,Y)),2.0)).
+tff(a,axiom, $sum(a,-1.5)=4.0).
+tff(a,conjecture, f(5,6) = a)..
+
+Here we first declare the types of some symbols. We then define f to be a function that averages two numbers and a to be 5.5 in some odd way. Running Vampire should give a proof containing 5 evaluation steps, can you see what is happening on each step? If we didn’t have these evaluation steps could we emulate them using some general axiom of arithmetic?
+
+2) We now have an example where we need more than evaluation. Open theory2.p, what is it defining? Run Vampire in default mode, which theory axioms do we need in the proof? 
+
+Could we use a smaller set of theory axioms (note that a theory axiom is just a theorem of the theory) - hint, Vampire’s proof output marks clauses with TD if they are a generated purely from theory axioms. To check your answer try adding some theory axioms directly to theory2.p and run Vampire without theory axioms by adding the option -tha off.
+
+3) But what about using z3, how can that help. Take a look at theory3.p. The first two clauses imply q(5) and the next two imply a=5, so together they imply q(a). Now try running Vampire on theory3.p, what happens?
+
+Now try running Vampire with the option -sas z3 (which sets z3 as the solver in AVATAR).
 
 
 Exercise 5 - One new option for theory reasoning
