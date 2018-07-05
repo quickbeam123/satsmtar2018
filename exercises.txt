@@ -147,8 +147,7 @@ They have been selected to also demonstrate the variability of the TPTP library.
 So we have many strategies and only some work for certain problems. Could we guess/predict which strategy will solve which problem?
 
 
-The general answer is: sadly, no. It seems useful to categorise problems based on certain syntactic features, but at the end of the day, 
-it's best to prepare more than one strategy, i.e. a schedule, to try for solving a particular problem.
+The general answer is: sadly, no. It seems useful to categorise problems based on certain syntactic features, but at the end of the day, it's best to prepare more than one strategy, i.e. a schedule, to try for solving a particular problem.
 
 "./vampire_z3_rel_master_3995 --mode casc"
 
@@ -182,6 +181,8 @@ Could we use a smaller set of theory axioms (note that a theory axiom is just a 
 Now try running Vampire with the option "-sas z3" (which sets z3 as the solver in AVATAR).
 
 4) The next (optional) exercise is to take one of theory1, theory2, or theory3 and translate it to SMT-LIB. Once you’ve done this you can run Vampire using —input_language smtlib2 and everything else should look the same.
+
+(it might help to look at the two versions of MSC023\=2 in the folder)
 
 
 Exercise 5 - Two new options for theory reasoning
