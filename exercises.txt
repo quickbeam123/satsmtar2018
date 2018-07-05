@@ -144,12 +144,26 @@ TASK: Can you find which strategy solves which problem?
 (By the way, feel free to look at the problems themselves to see what they encode.
 They have been selected to also demonstrate the variability of the TPTP library.)
 
+---
+
 So we have many strategies and only some work for certain problems. Could we guess/predict which strategy will solve which problem?
 
+The general answer is: sadly, no. It seems useful to categorise problems based on certain syntactic features, but at the end of the day, 
+it's best to prepare more than one strategy, i.e. a schedule, to try for solving a particular problem.
 
-The general answer is: sadly, no. It seems useful to categorise problems based on certain syntactic features, but at the end of the day, it's best to prepare more than one strategy, i.e. a schedule, to try for solving a particular problem.
+This leads us to strategy scheduling and the so called CASC mode in Vampire. 
+
+Try running 
 
 "./vampire_z3_rel_master_3995 --mode casc"
+
+on the challenge problems. The only one which looks challenging for casc mode seems to be:
+
+NUM506+3.p
+
+because it takes Vampire a considerably long time to try a successful strategy. 
+(On our machine,) it is only the 12th selected strategy which solves the problem, 
+but then still under 5 seconds.
 
 Executing a schedule of strategies can be sped up by using more than once core via "--cores 3".
 
@@ -231,32 +245,7 @@ Adding the option "-gtg all" or it's long version "--guess_the_goal all" lets us
 Exercise 7 - Modelling problems in first-order logic -- propositional Hilber calculi:
 -------------------------------------------------------------------------------------
 
-Do you remember the Hilbert calculus from your undergrad studies? It only uses the rule of modus ponens
 
-  A    A → B
- ------------ MP
-      B
-
-and an axiom scheme. A possible one for classical logic with implication and negation is:
-
-Ax 1: A → A
-Ax 2: (A → B) → A
-Ax 3: (A → (B → C)) → ((A → B) → (A → C))
-Ax 4: (¬B → ¬A) → (A → B)
-
-Can you encode the calculus into first order logic and save yourself the effort of finding Hilbert style proofs
-for double negation introduction ( A → ¬¬A) and double negation elimination ( ¬¬A → A )?
-
-Hint: introduce a truth predicate tt and function symbols imp and neg for the logical operators, axiomatize
-modus ponens as ∀x∀y.( tt(x) ∧ tt(x ∧ y) ) → tt(y).
-
-Hint: The meta-variables of the axiom scheme can be represented as first-order variables (with quantification).
-Axiom 1 in TPTP syntax would look like ![X]: tt(imp(X, X)) .
-
-Hint: Each axiom becomes a tptp statement of the form fof(axN, axiom, ... ), the conjecture will be the
-introduction / elimination rule you want to prove.
-
-Hint: The solution is in the files hilbert1.p and hilbert2.p . They should be proved in default mode.
 
 
 
