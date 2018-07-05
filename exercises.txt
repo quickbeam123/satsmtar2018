@@ -73,7 +73,7 @@ What did we get?
 
 ANSWER: Finite model builder constructed a THE one element group (in which every element is of order 2).
 
-4) Can add an axiom to make Vampire looking for larger models?
+4) Can you add an axiom to make Vampire looking for larger models?
 
 ANSWER: For instance, add 
 
@@ -119,7 +119,12 @@ Exercise 4 - Theories in Vampire, theory axioms, SMTLIB input
 -------------------------------------------------------------
 
 
+
+
+
 array example?
+
+
 
 
 
@@ -127,6 +132,12 @@ array example?
 
 - sine ?
 - large things?
+- cite paper!
+
+
+
+
+Modelling - combinatory SKI logic
 
 
 
@@ -137,7 +148,7 @@ Exercise 5 - Question answering mode
 goat, cabbage
 
 
-Modelling - combinatory SKI logic
+
 
 
 
