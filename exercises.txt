@@ -229,7 +229,8 @@ Adding the option "-gtg all" or it's long version "--guess_the_goal all" lets us
 
 "./vampire_z3_rel_master_3995 --input_syntax smtlib2 --guess_the_goal all ../satsmtar2018/javafe.parser.ParseStmt.002.smt2"
 
-
+Exercise 7 - Modelling problems in first-order logic -- propositional Hilber calculi:
+-------------------------------------------------------------------------------------
 
 
 
