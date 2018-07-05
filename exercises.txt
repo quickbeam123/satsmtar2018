@@ -119,21 +119,32 @@ Exercise 4 - Theories in Vampire, theory axioms, SMTLIB input
 -------------------------------------------------------------
 
 
+array example?
+
+
 
 
 
 - sine ?
-
 - large things?
+
+
 
 
 Exercise 5 - Question answering mode 
 ------------------------------------
 
+goat, cabbage
+
+
+Modelling - combinatory SKI logic
+
+
 
 
 Exercise 6 - Clausify / TClausify
 ---------------------------------
+
 
 
 
