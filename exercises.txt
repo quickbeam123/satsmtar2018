@@ -228,6 +228,23 @@ theory4
 
 Modelling - do a Hilbert calculus thing?
 
+Exercise ? - Smtlib
+-------------------
+
+Vampire can also solve problems in the SMTLib format. The problem javafe.parser.ParseStmt.002.smt2 comes
+from software verification and is contained in the SMTLib Benchmarks ( http://smtlib.cs.uiowa.edu/benchmarks.shtml ).
+
+Just running
+
+"./vampire_z3_rel_master_3993 --input_syntax smtlib2 javafe.parser.ParseStmt.002.smt2"
+
+does not find a proof in decent time. The reason is that knowing the goal helps Vampire significantly. In case the goal
+is unknown it provides an option to guess what the goal is. Adding the option -gtg all lets us solve this problem.
+
+"./vampire_z3_rel_master_3993 --input_syntax smtlib2 -gtg all javafe.parser.ParseStmt.002.smt2"
+
+
+
 
 
 
