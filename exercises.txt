@@ -144,20 +144,31 @@ TASK: Can you find which strategy solves which problem?
 (By the way, feel free to look at the problems themselves to see what they encode.
 They have been selected to also demonstrate the variability of the TPTP library.)
 
-
-
-
+---
 
 So we have many strategies and only some work for certain problems. Could we guess/predict which strategy will solve which problem?
 
+The general answer is: sadly, no. 
 
+People try, it looks like a perfect application of machine learning, but so far there weren't convincing results.
 
+The Vampire lore is "if a strategy isn't solving your problem, go and try another one!"
 
+This leads us to strategy scheduling and the so called CASC mode in Vampire. 
 
-CASC kills all?
+Try running 
 
+"./vampire_z3_rel_master_3993 --mode casc"
 
+on the challenge problems. The only one which looks challenging for casc mode seems to be:
 
+NUM506+3.p
+
+because it takes Vampire a considerably long time to try a successful strategy. 
+(On our machine,) it is only the 12th selected strategy which solves the problem, 
+but then still under 5 seconds.
+
+This can be sped up by using more than once core via "--cores 3".
 
 
 Exercise 4 - Theories in Vampire, theory axioms, SMTLIB input
