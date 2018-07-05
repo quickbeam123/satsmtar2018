@@ -144,28 +144,16 @@ TASK: Can you find which strategy solves which problem?
 (By the way, feel free to look at the problems themselves to see what they encode.
 They have been selected to also demonstrate the variability of the TPTP library.)
 
----
-
 So we have many strategies and only some work for certain problems. Could we guess/predict which strategy will solve which problem?
+
 
 The general answer is: sadly, no. It seems useful to categorise problems based on certain syntactic features, but at the end of the day, 
 it's best to prepare more than one strategy, i.e. a schedule, to try for solving a particular problem.
 
-This leads us to strategy scheduling and the so called CASC mode in Vampire. 
-
-Try running 
-
 "./vampire_z3_rel_master_3995 --mode casc"
 
-on the challenge problems. The only one which looks challenging for casc mode seems to be:
-
-NUM506+3.p
-
-because it takes Vampire a considerably long time to try a successful strategy. 
-(On our machine,) it is only the 12th selected strategy which solves the problem, 
-but then still under 5 seconds.
-
 Executing a schedule of strategies can be sped up by using more than once core via "--cores 3".
+
 
 
 Exercise 4 - Theories in Vampire, theory axioms, SMTLIB input
@@ -205,10 +193,20 @@ Run Vampire on this problem using the options we met in the previous exercise (-
 
 Why not? Try running Vampire with -tha off --show_new on. We get two clauses and we really want to resolve them.
 
-Now try running with -uwa all. Vampire can now solve it. What have we done?
+Now try running with -uwa all. Vampire can now solve it. What have we done? Hint: it’s to do with unification.
 
-theory4
--thi all
+Next let’s look at another problem that should be easy to solve in theory4.p
+
+tff(a,conjecture, ?[X:$real] : ($greater(X,1.0) & $less(X,2.0))).
+
+This says that there is a real number between 1 and 2, which should be easy to show as we just need a witness. But running Vampire in default mode will be fruitless as we cannot derive such a number from our axioms.
+
+Now try running Vampire with the option -thi all. What’s happened?
+
+Both of these ideas are presented in our recent paper
+
+Unification with Abstraction and Theory Instantiation in Saturation-Based Reasoning
+https://link.springer.com/chapter/10.1007/978-3-319-89960-2_1
 
 Exercise 6 - Goal Guessing
 --------------------------
