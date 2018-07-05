@@ -196,15 +196,23 @@ Could we use a smaller set of theory axioms (note that a theory axiom is just a 
 
 Now try running Vampire with the option -sas z3 (which sets z3 as the solver in AVATAR).
 
+4) The next (optional) exercise is to take one of theory1, theory2, or theory3 and translate it to SMT-LIB. Once you’ve done this you can run Vampire using —input_language smtlib2 and everything else should look the same.
 
-Exercise 5 - One new option for theory reasoning
+
+Exercise 5 - Two new options for theory reasoning
 ------------------------------------------------
 
-Let have a look at the at an apparently easy problem ./MSC023\=2.p
+Let’s have a look at the at an apparently easy problem ./MSC023\=2.p
 
-Giles, please?
+Run Vampire on this problem using the options we met in the previous exercise (-tha off/on, -sas z3), can we solve it?
 
--uwa all
+Why not? Try running Vampire with -tha off --show_new on. We get two clauses and we really want to resolve them.
+
+Now try running with -uwa all. Vampire can now solve it. What have we done?
+
+theory4
+-thi all
+
 
 
 
