@@ -148,11 +148,8 @@ They have been selected to also demonstrate the variability of the TPTP library.
 
 So we have many strategies and only some work for certain problems. Could we guess/predict which strategy will solve which problem?
 
-The general answer is: sadly, no. 
-
-People try, it looks like a perfect application of machine learning, but so far there weren't convincing results.
-
-The Vampire lore is "if a strategy isn't solving your problem, go and try another one!"
+The general answer is: sadly, no. It seems useful to categorise problems based on certain syntactic features, but at the end of the day, 
+it's best to prepare more than one strategy, i.e. a schedule, to try for solving a particular problem.
 
 This leads us to strategy scheduling and the so called CASC mode in Vampire. 
 
