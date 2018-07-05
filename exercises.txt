@@ -114,8 +114,41 @@ An extra challenge: try understanding the proof!
 Exercise 3 - Challenge: Can you find the right strategy?
 --------------------------------------------------------
 
+This exercise has been constructed to annoy you! Also to demonstrate 
+- how fragile search spaces in first-order logic are. Often we have problems that a certain strategy solves almost instantly, 
+while another will not terminate in reasonable time.
+- how useful incomplete strategies can be. In the theory talks you have heard that the developers of first-order theorem provers 
+like calculi that are complete. Well, if you want to win competitions, take inspiration from Vampire and also employ incomplete ones.
+Some our really powerful and help us solve problems which we cannot solve otherwise!
+
+In the slides you have already seen some suggestions on how to obtain interesting strategies different from the default strategy of Vampire. They were obtained by
+
+- turning on the set of support strategy via "-sos on" (this is an incomplete but a very useful strategy!)
+
+- turning off avatar via "-av off" (we solver fewer problems, but there are some which we cannot solve with avatar)
+
+- switching the saturation strategy from the default LRS to discount
+  and also adjusting the age weight ratio for this strategy via "-sa discount -awr 10"
+
+- using an incomplete but powerful Lookahead literal selection via "-s 1011"
+(see "Selecting the Selection. IJCAR 2016" for more details)
+ 
+- turning on the relatively expensive but often useful reduction called Backward subsumption via "-bs on".
+
+Including the default strategy, this represent 6 distinct strategies for Vampire.
+
+In the folder ./challenge/ you find 6 files (look just at the *.p files, the other ones are axiom files included from the *.p files)
+that have been selected such that exactly one of the above strategies succeeds on each of the problems.
+
+Can you find which strategy solves which problem?
 
 
+
+
+
+
+
+CASC
 
 
 
