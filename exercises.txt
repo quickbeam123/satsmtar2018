@@ -130,7 +130,7 @@ In the slides you have already seen some suggestions on how to obtain interestin
 - switching the saturation strategy from the default LRS to discount
   and also adjusting the age weight ratio for this strategy via "-sa discount -awr 10"
 
-- using an incomplete but powerful Lookahead literal selection via "-s 1011"
+- using an incomplete but powerful lookahead literal selection via "-s 1011"
 (see "Selecting the Selection. IJCAR 2016" for more details)
  
 - turning on the relatively expensive but often useful reduction called Backward subsumption via "-bs on".
@@ -199,6 +199,22 @@ Now try running Vampire with the option -sas z3 (which sets z3 as the solver in 
 4) The next (optional) exercise is to take one of theory1, theory2, or theory3 and translate it to SMT-LIB. Once you’ve done this you can run Vampire using —input_language smtlib2 and everything else should look the same.
 
 
+Goal Guessing
+-------------
+The problem javafe.parser.ParseStmt.002.smt2 comes
+from software verification and is contained in the SMTLib Benchmarks ( http://smtlib.cs.uiowa.edu/benchmarks.shtml ).
+
+Just running
+
+"./vampire_z3_rel_master_3993 --input_syntax smtlib2 javafe.parser.ParseStmt.002.smt2"
+
+does not find a proof in decent time. The reason is that knowing the goal helps Vampire significantly. In case the goal
+is unknown it provides an option to guess what the goal is. Adding the option -gtg all lets us solve this problem.
+
+"./vampire_z3_rel_master_3993 --input_syntax smtlib2 -gtg all javafe.parser.ParseStmt.002.smt2"
+
+
+
 Exercise 5 - Two new options for theory reasoning
 ------------------------------------------------
 
@@ -227,21 +243,6 @@ theory4
 
 
 Modelling - do a Hilbert calculus thing?
-
-Exercise ? - Smtlib
--------------------
-
-Vampire can also solve problems in the SMTLib format. The problem javafe.parser.ParseStmt.002.smt2 comes
-from software verification and is contained in the SMTLib Benchmarks ( http://smtlib.cs.uiowa.edu/benchmarks.shtml ).
-
-Just running
-
-"./vampire_z3_rel_master_3993 --input_syntax smtlib2 javafe.parser.ParseStmt.002.smt2"
-
-does not find a proof in decent time. The reason is that knowing the goal helps Vampire significantly. In case the goal
-is unknown it provides an option to guess what the goal is. Adding the option -gtg all lets us solve this problem.
-
-"./vampire_z3_rel_master_3993 --input_syntax smtlib2 -gtg all javafe.parser.ParseStmt.002.smt2"
 
 
 
