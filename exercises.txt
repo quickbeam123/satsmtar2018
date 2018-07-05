@@ -238,7 +238,7 @@ Do you remember the Hilbert calculus from your undergrad studies? It only uses t
  ------------ MP
       B
 
-and a set of axioms. A possible one for classical logic with implication and negation is:
+and an axiom scheme. A possible one for classical logic with implication and negation is:
 
 Ax 1: A → A
 Ax 2: (A → B) → A
@@ -251,10 +251,13 @@ for double negation introduction ( A → ¬¬A) and double negation elimination 
 Hint: introduce a truth predicate tt and function symbols imp and neg for the logical operators, axiomatize
 modus ponens as ∀x∀y.( tt(x) ∧ tt(x ∧ y) ) → tt(y).
 
+Hint: The meta-variables of the axiom scheme can be represented as first-order variables (with quantification).
+Axiom 1 in TPTP syntax would look like ![X]: tt(imp(X, X)) .
+
 Hint: Each axiom becomes a tptp statement of the form fof(axN, axiom, ... ), the conjecture will be the
 introduction / elimination rule you want to prove.
 
-Hint: The solution is in the files hilbert1.p and hilbert2.p
+Hint: The solution is in the files hilbert1.p and hilbert2.p . They should be proved in default mode.
 
 
 
