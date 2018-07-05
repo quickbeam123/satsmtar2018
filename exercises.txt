@@ -270,7 +270,7 @@ If we comment out the declaration:
 
 vampire(symbol,function,c,0,left).
 
-Vampire founds a proof, but the corresponding "interpolant"
+Vampire finds a proof, but the corresponding "interpolant"
 
 (![X0] : (p(c,X0)))
 
