@@ -23,7 +23,7 @@ the this vampire's "include" dir.)
 - git pull
 - make vampire_z3_rel -j 3
 
-should give us (as of 5 July 2018) vampire_z3_rel_master_3993
+should give us (as of 5 July 2018) vampire_z3_rel_master_3995
 
 
 Exercise 1 - Limited Resource Strategy (LRS) and the time limit
@@ -33,7 +33,7 @@ Under certain conditions, LRS may behave in surprising ways. Because it actively
 clauses which are estimated not to be useful before the allotted time is over, it may
 prove things faster when given less time. Try running
 
-./vampire_z3_rel_master_3993 -awr 5:1 -fsr off ../satsmtar2018/GRP140-1.p
+./vampire_z3_rel_master_3995 -awr 5:1 -fsr off ../satsmtar2018/GRP140-1.p
 
 Note that:
 - LRS is on by default (otherwise "-sa lrs")
@@ -51,7 +51,7 @@ Let's play a bit with the problem "grp_ord2.p"
 
 1) just let Vampire prove it and try understanding the proof.
 
-./vampire_z3_rel_master_3993 ../satsmtar2018/grp_ord2.p 
+./vampire_z3_rel_master_3995 ../satsmtar2018/grp_ord2.p 
 
 2) Comment out the conjecture and run Vampire again as above.
 
@@ -102,7 +102,7 @@ The ability to show problems unsatisfiable using finite model building is a bit 
 
 The default strategy as in
 
-"./vampire_z3_rel_master_3993 ../satsmtar2018/grp_ord2.p"
+"./vampire_z3_rel_master_3995 ../satsmtar2018/grp_ord2.p"
 
 will have a hard time.
 
@@ -158,7 +158,7 @@ This leads us to strategy scheduling and the so called CASC mode in Vampire.
 
 Try running 
 
-"./vampire_z3_rel_master_3993 --mode casc"
+"./vampire_z3_rel_master_3995 --mode casc"
 
 on the challenge problems. The only one which looks challenging for casc mode seems to be:
 
@@ -168,7 +168,7 @@ because it takes Vampire a considerably long time to try a successful strategy.
 (On our machine,) it is only the 12th selected strategy which solves the problem, 
 but then still under 5 seconds.
 
-This can be sped up by using more than once core via "--cores 3".
+Executing a schedule of strategies can be sped up by using more than once core via "--cores 3".
 
 
 Exercise 4 - Theories in Vampire, theory axioms, SMTLIB input
@@ -184,17 +184,17 @@ tff(f,type,f:$int*$int>$real).
 tff(a,type,a:$real).
 tff(f,axiom, ![X:$int,Y:$int] : f(X,Y) = $divide($to_real($sum(X,Y)),2.0)).
 tff(a,axiom, $sum(a,-1.5)=4.0).
-tff(a,conjecture, f(5,6) = a)..
+tff(a,conjecture, f(5,6) = a).
 
 Here we first declare the types of some symbols. We then define f to be a function that averages two numbers and a to be 5.5 in some odd way. Running Vampire should give a proof containing 5 evaluation steps, can you see what is happening on each step? If we didn’t have these evaluation steps could we emulate them using some general axiom of arithmetic?
 
 2) We now have an example where we need more than evaluation. Open theory2.p, what is it defining? Run Vampire in default mode, which theory axioms do we need in the proof? 
 
-Could we use a smaller set of theory axioms (note that a theory axiom is just a theorem of the theory) - hint, Vampire’s proof output marks clauses with TD if they are a generated purely from theory axioms. To check your answer try adding some theory axioms directly to theory2.p and run Vampire without theory axioms by adding the option -tha off.
+Could we use a smaller set of theory axioms (note that a theory axiom is just a theorem of the theory) - hint, Vampire’s proof output marks clauses with TD if they are a generated purely from theory axioms. To check your answer try adding some theory axioms directly to theory2.p and run Vampire without theory axioms by adding the option "-tha off".
 
 3) But what about using z3, how can that help. Take a look at theory3.p. The first two clauses imply q(5) and the next two imply a=5, so together they imply q(a). Now try running Vampire on theory3.p, what happens?
 
-Now try running Vampire with the option -sas z3 (which sets z3 as the solver in AVATAR).
+Now try running Vampire with the option "-sas z3" (which sets z3 as the solver in AVATAR).
 
 4) The next (optional) exercise is to take one of theory1, theory2, or theory3 and translate it to SMT-LIB. Once you’ve done this you can run Vampire using —input_language smtlib2 and everything else should look the same.
 
@@ -265,7 +265,7 @@ Notice that the conjecture is an existentially quantified formula, where the var
 In such cases, Vampire can be instructed to automatically extract the value of the solution from any successful refutation.
 This is called the Question Answering mode. To try this, you can run 
 
-"./vampire_z3_rel_master_3993 ../satsmtar2018/PUZ047variant.p -qa answer_literal -av off"
+"./vampire_z3_rel_master_3995 ../satsmtar2018/PUZ047variant.p -qa answer_literal -av off"
 
 (currently, question answering is incompatible with AVATAR.)
 
