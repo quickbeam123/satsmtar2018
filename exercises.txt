@@ -115,16 +115,29 @@ Exercise 3 - Challenge: Can you find the right strategy?
 --------------------------------------------------------
 
 
+
+
+
+
+
+
 Exercise 4 - Theories in Vampire, theory axioms, SMTLIB input
 -------------------------------------------------------------
 
+Giles, please?
+
+--input_syntax smtlib2
 
 
 
+Exercise 5 - One new option for theory reasoning
+------------------------------------------------
 
-array example?
+Let have a look at the at an apparently easy problem ./MSC023\=2.p
 
+Giles, please?
 
+-uwa all
 
 
 
@@ -137,27 +150,40 @@ array example?
 
 
 
-Modelling - combinatory SKI logic
+
+Modelling - do a Hilbert calculus thing?
 
 
 
 
-Exercise 5 - Question answering mode 
-------------------------------------
+Exercise 5 - Modelling problems in first-order logic and the Question answering mode 
+------------------------------------------------------------------------------------
 
-goat, cabbage
+Do you know the puzzle Crossing the River (with a Wolf, a Goat, and a Cabbage)? 
+You can check it out, e.g., at http://www.mathcats.com/explore/river/crossing.html
 
+Can you formalise in first-order logic such that whenever Vampire finds a proof
+there is a solution to the puzzle? Try it yourself before you proceed!
 
+Possible solution can be found in "./PUZ047variant.p" 
+(it was derived by modifying the official TPTP problem http://www.cs.miami.edu/~tptp/cgi-bin/SeeTPTP?Category=Problems&Domain=PUZ&File=PUZ047+1.p)
 
+Notice that the conjecture is an existentially quantified formula, where the variable Z essentially stands for the solution. 
+In such cases, Vampire can be instructed to automatically extract the value of the solution from any successful refutation.
+This is called the Question Answering mode. To try this, you can run 
 
+"./vampire_z3_rel_master_3993 ../satsmtar2018/PUZ047variant.p -qa answer_literal -av off"
 
+(currently, question answering is incompatible with AVATAR.)
 
+Notice the output line:
 
-Exercise 6 - Clausify / TClausify
----------------------------------
+% SZS status Theorem for PUZ047variant
+% SZS answers Tuple [[take_goat(go_alone(take_wolf(take_goat(take_cabbage(go_alone(take_goat(start)))))))]|_] for PUZ047variant
 
+which encodes the solution.
 
-
+For more details, check out Giles' paper: "Revisiting Question Answering in Vampire, VW 2017" (https://easychair.org/publications/open/5L6q).
 
 
 Exercise 6 - Interpolation in Vampire
