@@ -137,18 +137,24 @@ In the slides you have already seen some suggestions on how to obtain interestin
 
 Including the default strategy, this represent 6 distinct strategies for Vampire.
 
-In the folder ./challenge/ you find 6 files (look just at the *.p files, the other ones are axiom files included from the *.p files)
-that have been selected such that exactly one of the above strategies succeeds on each of the problems.
+In the folder ./challenge/ you find 6 files that have been selected such that exactly one of the above strategies succeeds on each of the problems.
 
-Can you find which strategy solves which problem?
+TASK: Can you find which strategy solves which problem?
 
-
-
-
+(By the way, feel free to look at the problems themselves to see what they encode.
+They have been selected to also demonstrate the variability of the TPTP library.)
 
 
 
-CASC
+
+
+So we have many strategies and only some work for certain problems. Could we guess/predict which strategy will solve which problem?
+
+
+
+
+
+CASC kills all?
 
 
 
