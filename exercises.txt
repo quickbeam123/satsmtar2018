@@ -115,29 +115,34 @@ Exercise 3 - Challenge: Can you find the right strategy?
 --------------------------------------------------------
 
 This exercise has been constructed to annoy you! Also to demonstrate 
-- how fragile search spaces in first-order logic are. Often we have problems that a certain strategy solves almost instantly, 
+- how fragile search spaces in first-order logic are.
+Often we have problems that a certain strategy solves almost instantly,
 while another will not terminate in reasonable time.
-- how useful incomplete strategies can be. In the theory talks you have heard that the developers of first-order theorem provers 
-like calculi that are complete. Well, if you want to win competitions, take inspiration from Vampire and also employ incomplete ones.
-Some our really powerful and help us solve problems which we cannot solve otherwise!
+- how useful incomplete strategies can be. In the theory talks,
+you have heard that the developers of first-order theorem provers
+like calculi that are complete. Well, if you want to win competitions,
+take inspiration from Vampire and also employ incomplete ones.
+Some are really powerful and help us solve problems which we cannot solve otherwise!
 
-In the slides you have already seen some suggestions on how to obtain interesting strategies different from the default strategy of Vampire. They were obtained by
+In the slides you have already seen some suggestions on how to obtain interesting strategies
+different from the default strategy of Vampire. They were obtained by
 
 - turning on the set of support strategy via "-sos on" (this is an incomplete but a very useful strategy!)
 
-- turning off avatar via "-av off" (we solver fewer problems, but there are some which we cannot solve with avatar)
+- turning off avatar via "-av off" (we solve fewer problems, but there are some which we cannot solve with avatar)
 
 - switching the saturation strategy from the default LRS to discount
   and also adjusting the age weight ratio for this strategy via "-sa discount -awr 10"
 
 - using an incomplete but powerful lookahead literal selection via "-s 1011"
 (see "Selecting the Selection. IJCAR 2016" for more details)
- 
+
 - turning on the relatively expensive but often useful reduction called Backward subsumption via "-bs on".
 
-Including the default strategy, this represent 6 distinct strategies for Vampire.
+- Including the default strategy, this represent 6 distinct strategies for Vampire.
 
-In the folder ./challenge/ you find 6 files that have been selected such that exactly one of the above strategies succeeds on each of the problems.
+In the folder ./challenge/ you find 6 files that have been selected such that exactly
+one of the above strategies succeeds on each of the problems.
 
 TASK: Can you find which strategy solves which problem?
 
@@ -146,10 +151,12 @@ They have been selected to also demonstrate the variability of the TPTP library.
 
 ---
 
-So we have many strategies and only some work for certain problems. Could we guess/predict which strategy will solve which problem?
+So we have many strategies and only some work for certain problems.
+Could we guess/predict which strategy will solve which problem?
 
-The general answer is: sadly, no. It seems useful to categorise problems based on certain syntactic features, but at the end of the day, 
-it's best to prepare more than one strategy, i.e. a schedule, to try for solving a particular problem.
+The general answer is: sadly, no. It seems useful to categorise problems based on certain syntactic features,
+but at the end of the day, it's best to prepare more than one strategy, i.e. a schedule,
+to try for solving a particular problem.
 
 This leads us to strategy scheduling and the so called CASC mode in Vampire. 
 
@@ -172,7 +179,11 @@ Executing a schedule of strategies can be sped up by using more than once core v
 Exercise 4 - Theories in Vampire, theory axioms, SMTLIB input
 -------------------------------------------------------------
 
-Vampire can handle the (quantified) theories of (integer/real linear/non-linear) arithmetic, arrays, and datatypes. We do this in various ways with the main ones being (i) simple rewriting/evaluation, (ii) the addition of theory axioms, and (iii) the use of the z3 SMT solver within AVATAR.
+Vampire can handle the (quantified) theories of (integer/real linear/non-linear) arithmetic,
+arrays, and datatypes. We do this in various ways with the main ones being
+(i) simple rewriting/evaluation,
+(ii) the addition of theory axioms, and
+(iii) the use of the z3 SMT solver within AVATAR.
 
 We also support the SMT-LIB input format (but I’m going to stay in TPTP for a bit).
 
